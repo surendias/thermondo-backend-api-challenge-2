@@ -42,30 +42,20 @@ module.exports = router;
  *           schema:
  *             type: object
  *             required:
- *               - name
- *               - email
- *               - password
- *               - role
+ *               - title
+ *               - body
+ *               - tags
  *             properties:
- *               name:
+ *               title:
  *                 type: string
- *               email:
+ *               body:
  *                 type: string
- *                 format: email
- *                 description: must be unique
- *               password:
- *                 type: string
- *                 format: password
- *                 minLength: 8
- *                 description: At least one number and one letter
- *               role:
- *                  type: string
- *                  enum: [note, admin]
+ *               tags:
+ *                 type: [string]
  *             example:
- *               name: fake name
- *               email: fake@example.com
- *               password: password1
- *               role: note
+ *               title: fake title
+ *               body: fake body
+ *               tags: ["tag 1", "tag 2"]
  *     responses:
  *       "201":
  *         description: Created
@@ -73,8 +63,6 @@ module.exports = router;
  *           application/json:
  *             schema:
  *                $ref: '#/components/schemas/Note'
- *       "400":
- *         $ref: '#/components/responses/DuplicateEmail'
  *       "401":
  *         $ref: '#/components/responses/Unauthorized'
  *       "403":

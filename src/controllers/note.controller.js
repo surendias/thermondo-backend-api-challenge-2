@@ -10,18 +10,18 @@ const createNote = catchAsync(async (req, res) => {
 });
 
 const getNotes = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'role']);
+  const filter = pick(req.query, ['tags']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await noteService.queryNotes(filter, options);
   res.send(result);
 });
 
 const getNote = catchAsync(async (req, res) => {
-  const user = await noteService.getNoteById(req.params.userId);
-  if (!user) {
+  const note = await noteService.getNoteById(req.params.noteId);
+  if (!note) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Note not found');
   }
-  res.send(user);
+  res.send(note);
 });
 
 const updateNote = catchAsync(async (req, res) => {

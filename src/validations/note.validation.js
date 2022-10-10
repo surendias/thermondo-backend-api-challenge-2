@@ -6,7 +6,6 @@ const createNote = {
     title: Joi.string().required(),
     body: Joi.string().required(),
     tags: Joi.array(),
-    user: Joi.string().custom(objectId),
   }),
 };
 
@@ -34,7 +33,6 @@ const updateNote = {
       title: Joi.string().required(),
       body: Joi.string().required(),
       tags: Joi.array(),
-      user: Joi.string().custom(objectId),
     })
     .min(1),
 };
